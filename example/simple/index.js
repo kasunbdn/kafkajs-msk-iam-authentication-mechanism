@@ -18,6 +18,16 @@ async function run () {
   await admin.connect()
   const topics = await admin.listTopics()
   console.log('Topics: ', topics)
+  const producer = kafka.producer()
+
+await producer.connect()
+await producer.send({
+    topic: 'topic-name',
+    messages: [
+        { key: 'key1', value: 'hello world', partition: 0 },
+        { key: 'key2', value: 'hey hey!', partition: 1 }
+    ],
+})
   await admin.disconnect()
 }
 
