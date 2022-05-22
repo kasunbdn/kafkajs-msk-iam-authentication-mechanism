@@ -19,7 +19,8 @@ async function run () {
   await admin.connect()
   const topics = await admin.listTopics()
   await admin.createTopics({
-      topics: ['lime', 'test']
+      topics: [
+        { topic:'lime'}, { topic:'test'}]
     })
   console.log('Topics: ', topics)
   await admin.disconnect()
