@@ -14,7 +14,7 @@ const kafka = new Kafka({
 })
 
 async function run () {
-  
+  console.log("ttl", process.env.TTL)
     const admin = kafka.admin()
   await admin.connect()
   const topics = await admin.listTopics()
