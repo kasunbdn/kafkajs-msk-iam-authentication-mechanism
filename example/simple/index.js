@@ -14,11 +14,21 @@ const kafka = new Kafka({
 })
 
 async function run () {
+  
+    const admin = kafka.admin()
+  await admin.connect()
+  const topics = await admin.listTopics()
+  await admin.createTopics({
+      topics: ['lime', 'test]
+    })
+  console.log('Topics: ', topics)
+  await admin.disconnect()
+  
   const producer = kafka.producer()
 
 await producer.connect()
 await producer.send({
-    topic: 'topic-name',
+    topic: 'lime',
     messages: [{
         key: 'key1',
         value: 'hello world',
@@ -28,11 +38,6 @@ await producer.send({
         }
     }]
 });
-    const admin = kafka.admin()
-  await admin.connect()
-  const topics = await admin.listTopics()
-  console.log('Topics: ', topics)
-  await admin.disconnect()
 }
 
 run()
