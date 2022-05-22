@@ -22,11 +22,7 @@ async function run () {
 
 await producer.connect()
 await producer.send({
-    topic: 'topic-name',
-    messages: [
-        { key: 'key1', value: 'hello world', partition: 0 },
-        { key: 'key2', value: 'hey hey!', partition: 1 }
-    ],
+    topic: 'topic-name'
 })
   await admin.disconnect()
 }
