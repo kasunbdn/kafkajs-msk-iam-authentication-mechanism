@@ -14,10 +14,6 @@ const kafka = new Kafka({
 })
 
 async function run () {
-  const admin = kafka.admin()
-  await admin.connect()
-  const topics = await admin.listTopics()
-  console.log('Topics: ', topics)
   const producer = kafka.producer()
 
 await producer.connect()
@@ -31,7 +27,11 @@ await producer.send({
             'system-id': 'my-system',
         }
     }]
-})
+});
+    const admin = kafka.admin()
+  await admin.connect()
+  const topics = await admin.listTopics()
+  console.log('Topics: ', topics)
   await admin.disconnect()
 }
 
