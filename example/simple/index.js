@@ -52,7 +52,7 @@ setInterval(async () => {
   ///////////////////////////////////
   
   const topic = 'lime'
-const consumer = kafka.consumer({ groupId: 'test-group' })
+const consumer = kafka.consumer({ groupId: 'consumer' })
 
 
   consumer.logger().setLogLevel(logLevel.DEBUG)
