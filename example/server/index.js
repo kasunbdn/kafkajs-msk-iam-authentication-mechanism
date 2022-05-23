@@ -35,7 +35,7 @@ app.use((req, res, next) => {
   req.producer = producer
   next()
 })
-
+/*
 app.post('/provision', async (req, res) => {
   try {
     const { body: { topics } } = req
@@ -72,7 +72,71 @@ app.post('/', async (req, res) => {
     res.sendStatus(500)
   }
 })
+*/
 
+app.post('/topic', async (req, res) => {
+  try {
+    const { body: { name } } = req
+    if (!name) {
+      return res.sendStatus(400)
+    }
+
+    await admin.connect()
+    await admin.createTopics({
+      topics: [{
+        topic: name
+      }]
+    })
+    res.sendStatus(200)
+  } catch (err) {
+    console.error(err)
+    res.sendStatus(500)
+  }
+})
+
+app.post('/message', async (req, res) => {
+  try {
+    const { body: { name, topic } } = req
+    if (!name || !topic) {
+      return res.sendStatus(400)
+    }
+
+    await producer.send({
+      topic,
+      messages: [
+        { value: JSON.stringify(name) }
+      ]
+    })
+    res.sendStatus(200)
+  } catch (err) {
+    console.error(err)
+    res.sendStatus(500)
+  }
+})
+
+app.post('/subscribe', async (req, res) => {
+  try {
+    const { body: { topic } } = req
+    if (!topic) {
+      return res.sendStatus(400)
+    }
+const consumer = kafka.consumer({ groupId: 'test-group' })
+await consumer.connect()
+    await consumer.subscribe({ topic })
+    await consumer.run({
+      eachMessage: async ({ topic, message }) => {
+        console.log({
+          value: message.value.toString(),
+          topic
+        })
+      }
+    })
+    res.sendStatus(200)
+  } catch (err) {
+    console.error(err)
+    res.sendStatus(500)
+  }
+})
 async function run () {
   await producer.connect()
   app.listen(port, () => {
