@@ -30,15 +30,11 @@ async function run () {
 
 await producer.connect()
 setInterval(async () => {
+  console.log('timeout')
                     await producer.send({
     topic: 'lime',
     messages: [{
-        key: 'key1',
-        value: 'hello world'+ Date.now(),
-        headers: {
-            'correlation-id': '2bfb68bb-893a-423b-a7fa-7b568cad5b67',
-            'system-id': 'my-system',
-        }
+        value: 'hello world'+ Date.now()
     }]
 });
                 }, 500);
@@ -56,11 +52,7 @@ setInterval(async () => {
    await producer.send({
     topic: 'lime',
     messages: [{
-        key: 'key1',
-        value: 'hello world'+ Date.now(),
-        headers: {
-            'correlation-id': '2bfb68bb-893a-423b-a7fa-7b568cad5b67',
-            'system-id': 'my-system',
+        value: 'hello world'+ Date.now()
         }
     }]
 });
