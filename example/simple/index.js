@@ -53,7 +53,6 @@ setInterval(async () => {
     topic: 'lime',
     messages: [{
         value: 'hello world'+ Date.now()
-        }
     }]
 });
   
