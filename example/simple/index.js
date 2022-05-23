@@ -1,4 +1,4 @@
-const { Kafka, AuthenticationMechanisms } = require('kafkajs')
+const { Kafka,logLevel, AuthenticationMechanisms } = require('kafkajs')
 const { Mechanism, Type } = require('../../src')
 AuthenticationMechanisms[Type] = () => Mechanism
 
