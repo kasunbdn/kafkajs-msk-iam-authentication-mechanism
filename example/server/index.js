@@ -2,7 +2,7 @@ const { Kafka, AuthenticationMechanisms } = require('kafkajs')
 const express = require('express')
 const app = express()
 const { Mechanism, Type } = require('../../src')
-AuthenticationMechanisms[Type] = () => Mechanism
+//AuthenticationMechanisms[Type] = () => Mechanism
 
 const port = process.env.PORT || 3000
 
