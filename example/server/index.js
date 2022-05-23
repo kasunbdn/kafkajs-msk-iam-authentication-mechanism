@@ -11,8 +11,9 @@ const kafka = new Kafka({
   clientId: 'consumer',
   ssl: true,
   sasl: {
-    mechanism: 'aws',
-    authorizationIdentity: 'Kasun'
+    mechanism: Type,
+    region: process.env.REGION,
+    ttl: process.env.TTL
   }
 })
 
