@@ -26,6 +26,8 @@ async function run () {
   console.log('Topics: ', topics)
   await admin.disconnect()
   
+  /*
+  
   const producer = kafka.producer()
 
 await producer.connect()
@@ -46,7 +48,7 @@ setInterval(async () => {
     }]
 });
   
-  
+*/  
   
   
   ///////////////////////////////////
