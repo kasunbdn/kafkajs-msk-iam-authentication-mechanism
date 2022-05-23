@@ -18,10 +18,12 @@ async function run () {
     const admin = kafka.admin()
   await admin.connect()
   const topics = await admin.listTopics()
-  await admin.createTopics({
+  const res = await admin.createTopics({
       topics: [
         { topic:'lime'}, { topic:'test'}]
     })
+  console.log('res: ', JSON.stringify(res))
+  
   console.log('Topics: ', topics)
   await admin.disconnect()
   
@@ -39,6 +41,17 @@ await producer.send({
         }
     }]
 });
+  
+  const consumer = kafka.consumer({ groupId: 'test-group' })
+  await consumer.subscribe({  topic:'lime' })
+    await consumer.run({
+      eachMessage: async ({ topic, message }) => {
+        console.log({
+          value: message.value.toString(),
+          topic
+        })
+      }
+    })
 }
 
 run()
