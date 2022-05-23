@@ -54,7 +54,7 @@ setInterval(async () => {
   const topic = 'lime'
 const consumer = kafka.consumer({ groupId: 'test-group' })
 
-const run = async () => {
+const runrun = async () => {
   await consumer.connect()
   await consumer.subscribe({ topic, fromBeginning: true })
   await consumer.run({
@@ -68,7 +68,7 @@ const run = async () => {
   })
 }
 
-run().catch(e => console.error(`[example/consumer] ${e.message}`, e))
+runrun().catch(e => console.error(`[example/consumer] ${e.message}`, e))
 
 const errorTypes = ['unhandledRejection', 'uncaughtException']
 const signalTraps = ['SIGTERM', 'SIGINT', 'SIGUSR2']
