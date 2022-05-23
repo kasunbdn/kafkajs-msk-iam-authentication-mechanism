@@ -19,14 +19,14 @@ async function run () {
   const topics = await admin.listTopics()
   const res = await admin.createTopics({
       topics: [
-        { topic:'lime1'}, { topic:'test1'}]
+        { topic:'lime'}, { topic:'test1'}]
     })
   console.log('res: ', JSON.stringify(res))
   
   console.log('Topics: ', topics)
   await admin.disconnect()
   
-  /*
+
   
   const producer = kafka.producer()
 
@@ -48,7 +48,7 @@ setInterval(async () => {
     }]
 });
   
-*/  
+
   
   
   ///////////////////////////////////
