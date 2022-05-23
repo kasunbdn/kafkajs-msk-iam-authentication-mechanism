@@ -11,11 +11,18 @@ const kafka = new Kafka({
   clientId: 'consumer',
   ssl: true,
   sasl: {
+    mechanism: 'aws',
+    authorizationIdentity: 'Kasun'
+  }
+})
+
+
+/*
+sasl: {
     mechanism: Type,
     region: process.env.REGION,
     ttl: process.env.TTL
-  }
-})
+  }*/
 
 const producer = kafka.producer()
 const admin = kafka.admin()
