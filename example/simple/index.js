@@ -34,7 +34,7 @@ await producer.connect()
 setInterval(async () => {
   console.log('timeout')
                     await producer.send({
-    topic: 'lime',
+    topic: 'msk-serverless-tutorial',
     messages: [{
         value: 'hello world'+ Date.now()
     }]
@@ -42,7 +42,7 @@ setInterval(async () => {
                 }, 5000);
   
    await producer.send({
-    topic: 'lime',
+    topic: 'msk-serverless-tutorial',
     messages: [{
         value: 'hello world'+ Date.now()
     }]
@@ -53,7 +53,7 @@ setInterval(async () => {
   
   ///////////////////////////////////
   
-  const topic = 'lime'
+  const topic = 'msk-serverless-tutorial'
 const consumer = kafka.consumer({ groupId: 'consumer' })
 
   await consumer.connect()
