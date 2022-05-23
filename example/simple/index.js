@@ -43,7 +43,7 @@ await producer.connect()
       }
     })
   
-  setInterval(() => {
+  setInterval(async () => {
                     await producer.send({
     topic: 'lime',
     messages: [{
