@@ -6,7 +6,6 @@ const kafka = new Kafka({
   brokers: process.env.BROKERS.split(','),
   clientId: 'consumer',
   ssl: true,
-   debug: 'all',
   sasl: {
     mechanism: Type,
     region: process.env.REGION,
@@ -56,6 +55,7 @@ setInterval(async () => {
 const consumer = kafka.consumer({ groupId: 'test-group' })
 
 
+  consumer.logger().setLogLevel(logLevel.DEBUG)
   await consumer.connect()
   await consumer.subscribe({ topic, fromBeginning: true })
   await consumer.run({
