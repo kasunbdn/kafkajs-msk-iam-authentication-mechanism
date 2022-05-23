@@ -45,7 +45,7 @@ setInterval(async () => {
                 }, 500);
   
   const consumer = kafka.consumer({ groupId: 'test-group' })
-  await consumer.subscribe({  topic:'lime' })
+  await consumer.subscribe({ topics: ['lime', 'lime1'] })
     await consumer.run({
       eachMessage: async ({ topic, message }) => {
         console.log({
