@@ -43,7 +43,7 @@ setInterval(async () => {
 });
                 }, 500);
   
-  const consumer = kafka.consumer({ groupId: 'test-group' })
+  const consumer = kafka.consumer({ groupId: 'test-group'+ Date.now()})
   await consumer.subscribe({ topic: 'lime',fromBeginning: true})
     await consumer.run({
       eachMessage: async ({ topic, message }) => {
