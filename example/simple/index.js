@@ -6,6 +6,7 @@ const kafka = new Kafka({
   brokers: process.env.BROKERS.split(','),
   clientId: 'consumer',
   ssl: true,
+   debug: 'all',
   sasl: {
     mechanism: Type,
     region: process.env.REGION,
@@ -37,7 +38,7 @@ setInterval(async () => {
         value: 'hello world'+ Date.now()
     }]
 });
-                }, 500);
+                }, 5000);
   
    await producer.send({
     topic: 'lime',
