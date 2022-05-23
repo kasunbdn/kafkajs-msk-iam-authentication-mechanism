@@ -54,8 +54,6 @@ setInterval(async () => {
   const topic = 'lime'
 const consumer = kafka.consumer({ groupId: 'consumer' })
 
-
-  consumer.logger().setLogLevel(logLevel.DEBUG)
   await consumer.connect()
   await consumer.subscribe({ topic, fromBeginning: true })
   await consumer.run({
