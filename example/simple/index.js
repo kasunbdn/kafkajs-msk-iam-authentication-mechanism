@@ -30,20 +30,7 @@ async function run () {
   const producer = kafka.producer()
 
 await producer.connect()
-
-  
-  const consumer = kafka.consumer({ groupId: 'test-group' })
-  await consumer.subscribe({  topic:'lime' })
-    await consumer.run({
-      eachMessage: async ({ topic, message }) => {
-        console.log({
-          value: message.value.toString(),
-          topic
-        })
-      }
-    })
-  
-  setInterval(async () => {
+setInterval(async () => {
                     await producer.send({
     topic: 'lime',
     messages: [{
@@ -56,6 +43,19 @@ await producer.connect()
     }]
 });
                 }, 500);
+  
+  const consumer = kafka.consumer({ groupId: 'test-group' })
+  await consumer.subscribe({  topic:'lime' })
+    await consumer.run({
+      eachMessage: async ({ topic, message }) => {
+        console.log({
+          value: message.value.toString(),
+          topic
+        })
+      }
+    })
+  
+  
 }
 
 run()
